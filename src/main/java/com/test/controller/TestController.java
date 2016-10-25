@@ -1,5 +1,8 @@
 package com.test.controller;
 
+import com.test.jpa.User;
+import com.test.jpa.user.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,10 +15,19 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/test")
 public class TestController
 {
+    @Autowired
+    private UserService userService;
 
     @RequestMapping("/test")
     public String sayHello()
     {
         return "hello world";
+    }
+
+
+    @RequestMapping("/addUser")
+    public void addUser(User user)
+    {
+        userService.saveUser(user);
     }
 }
