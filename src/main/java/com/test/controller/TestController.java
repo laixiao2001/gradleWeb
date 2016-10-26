@@ -26,8 +26,8 @@ public class TestController
 
 
     @RequestMapping("/addUser")
-    public void addUser(User user)
+    public User addUser(User user)
     {
-        userService.saveUser(user);
+        return userService.saveUser(user);
     }
 }

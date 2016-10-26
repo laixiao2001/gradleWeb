@@ -22,8 +22,8 @@ public class UserService {
     private IUserDAO userDao;
 
     // 新增用户
-    public void saveUser(User user) {
-        userDao.save(user);
+    public User saveUser(User user) {
+        return userDao.save(user);
     }
 
     // 删除用户，参数也可以为一个含有id的User对象

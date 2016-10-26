@@ -3,6 +3,7 @@ package com.test.jpa;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.Date;
 
 /**
  * Created by liusven on 2016/10/25.
@@ -22,6 +23,8 @@ public class User {
     @Column(name="USER_PASSWORD")
     private String passWord;
 
+    @Transient
+    private String createDate;
 
     /*************GET****************SET***************/
     public String getId()
@@ -42,12 +45,24 @@ public class User {
     public String getPassWord() {
         return passWord;
     }
+
+    public String getCreateDate()
+    {
+        return new Date().toString();
+    }
+
+    public void setCreateDate(String createDate)
+    {
+        this.createDate = new Date().toString();
+    }
+
     public void setPassWord(String passWord) {
         this.passWord = passWord;
     }
+
     @Override
     public String toString() {
         return "User [id=" + id + ", userName=" + userName + ", passWord="
-            + passWord + "]";
+            + passWord + ",createDate="+createDate+"]";
     }
 }
