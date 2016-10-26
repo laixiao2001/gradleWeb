@@ -29,7 +29,7 @@
     </bean>
 
     <bean id="fastJsonHttpMessageConverter"
-          class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter">
+          class="com.test.common.ExtFastJsonHttpMessageConverter">
         <property name="supportedMediaTypes">
             <list>
                 <value>application/json; charset=utf-8</value>

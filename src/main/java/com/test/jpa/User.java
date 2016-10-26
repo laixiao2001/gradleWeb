@@ -46,18 +46,14 @@ public class User {
         return passWord;
     }
 
+    public void setPassWord(String passWord)
+    {
+        this.passWord = passWord;
+    }
+
     public String getCreateDate()
     {
         return new Date().toString();
-    }
-
-    public void setCreateDate(String createDate)
-    {
-        this.createDate = new Date().toString();
-    }
-
-    public void setPassWord(String passWord) {
-        this.passWord = passWord;
     }
 
     @Override
