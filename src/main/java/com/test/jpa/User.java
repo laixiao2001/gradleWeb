@@ -1,5 +1,7 @@
 package com.test.jpa;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.*;
 
 /**
@@ -10,8 +12,9 @@ import javax.persistence.*;
 public class User {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(generator = "uuid")
+    @GenericGenerator(name = "uuid", strategy = "uuid")
+    private String id;
 
     @Column(name="USER_NAME")
     private String userName;
@@ -19,11 +22,15 @@ public class User {
     @Column(name="USER_PASSWORD")
     private String passWord;
 
+
     /*************GET****************SET***************/
-    public Long getId() {
+    public String getId()
+    {
         return id;
     }
-    public void setId(Long id) {
+
+    public void setId(String id)
+    {
         this.id = id;
     }
     public String getUserName() {
