@@ -27,7 +27,7 @@ public class UserService {
     }
 
     // 删除用户，参数也可以为一个含有id的User对象
-    public void deleteUser(Long id) {
+    public void deleteUser(String id) {
         userDao.delete(id);
     }
 
