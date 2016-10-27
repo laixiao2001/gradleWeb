@@ -17,11 +17,11 @@ public class User {
     @GenericGenerator(name = "uuid", strategy = "uuid")
     private String id;
 
-    @Column(name="USER_NAME")
+    @Column(name="userName")
     private String userName;
 
-    @Column(name="USER_PASSWORD")
-    private String passWord;
+    @Column(name="password")
+    private String password;
 
     @Transient
     private String createDate;
@@ -42,23 +42,23 @@ public class User {
     public void setUserName(String userName) {
         this.userName = userName;
     }
-    public String getPassWord() {
-        return passWord;
-    }
-
-    public void setPassWord(String passWord)
-    {
-        this.passWord = passWord;
-    }
 
     public String getCreateDate()
     {
         return new Date().toString();
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     @Override
     public String toString() {
         return "User [id=" + id + ", userName=" + userName + ", passWord="
-            + passWord + ",createDate="+createDate+"]";
+            + password + ",createDate="+createDate+"]";
     }
 }

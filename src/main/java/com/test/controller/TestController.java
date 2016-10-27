@@ -1,7 +1,7 @@
 package com.test.controller;
 
 import com.test.jpa.User;
-import com.test.jpa.user.UserService;
+import com.test.jpa.service.UserService;
 import com.test.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;

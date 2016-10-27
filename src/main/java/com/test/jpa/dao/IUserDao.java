@@ -1,4 +1,4 @@
-package com.test.jpa.user;
+package com.test.jpa.dao;
 
 import com.test.jpa.User;
 import org.springframework.data.repository.PagingAndSortingRepository;
@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
  * Created by liusven on 2016/10/25.
  */
 @Repository
-public interface IUserDAO extends PagingAndSortingRepository<User, String>{
+public interface IUserDao extends PagingAndSortingRepository<User, String>{
     /**
      * 通过前面的配置可以看出，Spring 对 JPA 的支持已经非常强大，开发者无需过多关注 EntityManager 的创建、事务处理等 JPA 相关的处理
      * ***********************************************************************

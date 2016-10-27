@@ -17,34 +17,34 @@ import javax.sql.DataSource;
 /**
  * Created by liusven on 2016/10/27.
  */
-@Configuration
-@EnableJpaRepositories
-@EnableTransactionManagement
+//@Configuration
+//@EnableJpaRepositories
+//@EnableTransactionManagement
 public class JpaApplicationConfig
 {
 
-    @Bean
-    public DataSource dataSource() {
-        EmbeddedDatabaseBuilder builder = new EmbeddedDatabaseBuilder();
-        return builder.setType(EmbeddedDatabaseType.HSQL).build();
-    }
-
-    @Bean
-    public EntityManagerFactory entityManagerFactory() {
-        HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
-        vendorAdapter.setGenerateDdl(true);
-        LocalContainerEntityManagerFactoryBean factory = new
-            LocalContainerEntityManagerFactoryBean();
-        factory.setJpaVendorAdapter(vendorAdapter);
-        factory.setPackagesToScan("com.test.jpa");
-        factory.setDataSource(dataSource());
-        factory.afterPropertiesSet();
-        return factory.getObject();
-    }
-    @Bean
-    public PlatformTransactionManager transactionManager() {
-        JpaTransactionManager txManager = new JpaTransactionManager();
-        txManager.setEntityManagerFactory(entityManagerFactory());
-        return txManager;
-    }
+//    @Bean
+//    public DataSource dataSource() {
+//        EmbeddedDatabaseBuilder builder = new EmbeddedDatabaseBuilder();
+//        return builder.setType(EmbeddedDatabaseType.HSQL).build();
+//    }
+//
+//    @Bean
+//    public EntityManagerFactory entityManagerFactory() {
+//        HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
+//        vendorAdapter.setGenerateDdl(true);
+//        LocalContainerEntityManagerFactoryBean factory = new
+//            LocalContainerEntityManagerFactoryBean();
+//        factory.setJpaVendorAdapter(vendorAdapter);
+//        factory.setPackagesToScan("com.test.jpa");
+//        factory.setDataSource(dataSource());
+//        factory.afterPropertiesSet();
+//        return factory.getObject();
+//    }
+//    @Bean
+//    public PlatformTransactionManager transactionManager() {
+//        JpaTransactionManager txManager = new JpaTransactionManager();
+//        txManager.setEntityManagerFactory(entityManagerFactory());
+//        return txManager;
+//    }
 }

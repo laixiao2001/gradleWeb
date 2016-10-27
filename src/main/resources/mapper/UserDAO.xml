@@ -3,6 +3,6 @@
 
 <mapper namespace="com.test.dao.IUserDAO">
     <select id="selectUsers" resultType="com.test.domain.User">
-       SELECT id,user_name as userName,user_password as password FROM T_SPRINGJPA_USER
+       SELECT id,user_Name as userName,password as password FROM T_SPRINGJPA_USER
     </select>
 </mapper>

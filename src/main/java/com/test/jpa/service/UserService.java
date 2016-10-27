@@ -1,10 +1,10 @@
-package com.test.jpa.user;
+package com.test.jpa.service;
 
 import java.util.List;
 import javax.annotation.Resource;
 
 import com.test.jpa.User;
-import org.springframework.beans.factory.annotation.Qualifier;
+import com.test.jpa.dao.IUserDao;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -16,10 +16,8 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 @Service
 public class UserService {
-    // 推荐用Resource来替代AutoWrite注解
-    @Qualifier("IUserDAO")
     @Resource
-    private IUserDAO userDao;
+    private IUserDao userDao;
 
     // 新增用户
     public User saveUser(User user) {
