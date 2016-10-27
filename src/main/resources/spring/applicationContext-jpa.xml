@@ -26,7 +26,7 @@
         <!-- 指定Entity实体类包路径 -->
         <property name="packagesToScan" >
             <array>
-                <value>com.test.jpa</value>
+                <value>com.test.jpa.domain</value>
             </array>
         </property>
         <!-- 指定Jpa持久化实现厂商类,这里以Hibernate为例 -->
@@ -36,7 +36,7 @@
         <property name="jpaProperties">
             <props>
                 <prop key="hibernate.dialect">org.hibernate.dialect.MySQL5InnoDBDialect</prop>
-                <prop key="hibernate.ejb.naming_strategy">org.hibernate.cfg.ImprovedNamingStrategy</prop>
+                <prop key="hibernate.ejb.naming_strategy">com.test.common.MyNamingStategy</prop>
                 <prop key="hibernate.cache.provider_class">org.hibernate.cache.NoCacheProvider</prop>
                 <prop key="hibernate.show_sql">true</prop>
                 <prop key="hibernate.format_sql">true</prop>

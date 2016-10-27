@@ -3,7 +3,7 @@ package com.test.jpa.service;
 import java.util.List;
 import javax.annotation.Resource;
 
-import com.test.jpa.User;
+import com.test.jpa.domain.User;
 import com.test.jpa.dao.IUserDao;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;

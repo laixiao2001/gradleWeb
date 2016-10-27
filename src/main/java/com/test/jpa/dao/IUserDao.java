@@ -1,6 +1,6 @@
 package com.test.jpa.dao;
 
-import com.test.jpa.User;
+import com.test.jpa.domain.User;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 

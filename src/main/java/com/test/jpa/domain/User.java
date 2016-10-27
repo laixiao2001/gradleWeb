@@ -1,4 +1,4 @@
-package com.test.jpa;
+package com.test.jpa.domain;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -9,7 +9,7 @@ import java.util.Date;
  * Created by liusven on 2016/10/25.
  */
 @Entity
-@Table(name="T_SPRINGJPA_USER")
+@Table(name="USERS")
 public class User {
 
     @Id
