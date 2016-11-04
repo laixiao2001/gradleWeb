@@ -27,6 +27,7 @@
         <property name="packagesToScan" >
             <array>
                 <value>com.test.jpa.domain</value>
+                <value>com.security.domain</value>
             </array>
         </property>
         <!-- 指定Jpa持久化实现厂商类,这里以Hibernate为例 -->
@@ -61,7 +62,7 @@
     </bean>
 
     <!-- 重要配置：启用扫描并自动创建代理的功能  -->
-    <jpa:repositories base-package="com.test.jpa.dao"  transaction-manager-ref="transactionManager" entity-manager-factory-ref="entityManagerFactory"/>
+    <jpa:repositories base-package="com.test.jpa.dao,com.security.dao"  transaction-manager-ref="transactionManager" entity-manager-factory-ref="entityManagerFactory"/>
 
     <!-- Hibernate对Jpa的实现 -->
     <bean id="hibernateJpaVendorAdapter" class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"/>

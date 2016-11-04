@@ -3,8 +3,7 @@
        xmlns="http://www.springframework.org/schema/beans"
        xsi:schemaLocation="
            http://www.springframework.org/schema/beans
-           http://www.springframework.org/schema/beans/spring-beans.xsd
-       ">
+           http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <!-- spring启动时扫描项目路径下的properties文件,后续用${key }方式取出对应值,这样可以代码解耦和，后续只需修改properties文件即可 -->
     <bean id="propertyPlaceholderConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
@@ -71,4 +70,5 @@
 
     <import resource="applicationContext-mybatis.xml"></import>
     <import resource="applicationContext-jpa.xml"></import>
+    <import resource="applicationContext-security.xml"></import>
 </beans>

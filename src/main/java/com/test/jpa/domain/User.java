@@ -9,7 +9,7 @@ import java.util.Date;
  * Created by liusven on 2016/10/25.
  */
 @Entity
-@Table(name="USERS")
+@Table(name="USER")
 public class User {
 
     @Id

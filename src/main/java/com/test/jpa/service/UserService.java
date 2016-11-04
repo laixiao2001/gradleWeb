@@ -45,4 +45,9 @@ public class UserService {
     public Page<User> findAllUserByPage(PageRequest page) {
         return userDao.findAll(page);
     }
+
+    public User findBySso(String ssoId)
+    {
+        return null;
+    }
 }
