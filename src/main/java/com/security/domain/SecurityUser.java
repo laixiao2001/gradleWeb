@@ -39,7 +39,7 @@ public class SecurityUser {
     private String email;
 
     @Column(name="state", nullable=false)
-    private String state=State.ACTIVE.getState();
+    private String state;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "securityUserUserProfile",

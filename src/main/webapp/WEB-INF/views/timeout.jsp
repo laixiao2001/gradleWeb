@@ -4,6 +4,6 @@
     <title>Title</title>
 </head>
 <body>
-timeout!
+登录超时，请重新<a href="/login">登录</a>
 </body>
 </html>

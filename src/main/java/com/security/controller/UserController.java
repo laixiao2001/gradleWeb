@@ -7,8 +7,6 @@ import org.springframework.security.web.authentication.logout.SecurityContextLog
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -19,36 +17,41 @@ import javax.servlet.http.HttpServletResponse;
 public class UserController {
 
 
-    @RequestMapping(value = { "/", "/home" }, method = RequestMethod.GET)
+    @RequestMapping(value = { "/", "/home" })
     public String homePage(ModelMap model) {
-        model.addAttribute("greeting", "Hi, Welcome to mysite");
+        model.addAttribute("user", getPrincipal());
         return "welcome";
     }
 
-    @RequestMapping(value = "/admin", method = RequestMethod.GET)
+    @RequestMapping(value = "/admin")
     public String adminPage(ModelMap model) {
         model.addAttribute("user", getPrincipal());
         return "admin";
     }
 
-    @RequestMapping(value = "/db", method = RequestMethod.GET)
+    @RequestMapping(value = "/db")
     public String dbaPage(ModelMap model) {
         model.addAttribute("user", getPrincipal());
         return "dba";
     }
 
-    @RequestMapping(value = "/accessDenied", method = RequestMethod.GET)
+    @RequestMapping(value = "/accessDenied")
     public String accessDeniedPage(ModelMap model) {
         model.addAttribute("user", getPrincipal());
         return "accessDenied";
     }
 
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    @RequestMapping(value = "/login")
     public String loginPage() {
         return "login";
     }
 
-    @RequestMapping(value="/logout", method = RequestMethod.GET)
+    @RequestMapping(value = "/timeout")
+    public String timeoutPage() {
+        return "timeout";
+    }
+
+    @RequestMapping(value="/logout")
     public String logoutPage (HttpServletRequest request, HttpServletResponse response) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if (auth != null){

@@ -25,13 +25,10 @@ public class CustomUserDetailsService implements UserDetailsService
     private SecurityUserService userService;
 
     @Transactional(readOnly=true)
-    public UserDetails loadUserByUsername(String ssoId)
-        throws UsernameNotFoundException
+    public UserDetails loadUserByUsername(String ssoId) throws UsernameNotFoundException
     {
         SecurityUser user = userService.findBySso(ssoId);
-        System.out.println("User : "+user);
         if(user==null){
-            System.out.println("User not found");
             throw new UsernameNotFoundException("Username not found");
         }
         return new User(user.getSsoId(), user.getPassword(),
@@ -40,12 +37,9 @@ public class CustomUserDetailsService implements UserDetailsService
 
     private List<GrantedAuthority> getGrantedAuthorities(SecurityUser user){
         List<GrantedAuthority> authorities = new ArrayList<>();
-
         for(UserProfile userProfile : user.getUserProfiles()){
-            System.out.println("UserProfile : "+userProfile);
             authorities.add(new SimpleGrantedAuthority("ROLE_"+userProfile.getType()));
         }
-        System.out.print("authorities :"+authorities);
         return authorities;
     }
 
