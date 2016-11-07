@@ -3,11 +3,11 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>HelloWorld Login page</title>
-    <link href="<c:url value='/static/css/bootstrap.css' />"  rel="stylesheet"/>
-    <link href="<c:url value='/static/css/app.css' />" rel="stylesheet">
+    <title>登录</title>
+    <link href="static/css/bootstrap.css"  rel="stylesheet">
+    <link href="static/css/app.css" rel="stylesheet">
+    <script type="text/javascript" src="static/js/jquery-3.1.1.min.js" charset="UTF-8"></script>
 </head>
-
 <body>
 <div id="mainWrapper">
     <div class="login-container">
@@ -17,12 +17,17 @@
                 <form action="${loginUrl}" method="post" class="form-horizontal">
                     <c:if test="${param.error != null}">
                         <div class="alert alert-danger">
-                            <p>Invalid username and password.</p>
+                            <p>用户名或密码错误!</p>
+                        </div>
+                    </c:if>
+                    <c:if test="${param.invalidCaptcha != null}">
+                        <div class="alert alert-danger">
+                            <p>验证码错误!</p>
                         </div>
                     </c:if>
                     <c:if test="${param.logout != null}">
                         <div class="alert alert-success">
-                            <p>You have been logged out successfully.</p>
+                            <p>成功退出!</p>
                         </div>
                     </c:if>
                     <div class="input-group input-sm">
@@ -32,6 +37,13 @@
                     <div class="input-group input-sm">
                         <label class="input-group-addon" for="password"><i class="fa fa-lock"></i></label>
                         <input type="password" class="form-control" id="password" name="password" placeholder="Enter Password" required>
+                    </div>
+                    <div class="input-group input-sm">
+                        <label class="input-group-addon" for="password"><i class="fa fa-lock"></i></label>
+                        <input type="password" class="form-control" id="captcha" name="captcha" placeholder="Enter Captcha" required>
+                    </div>
+                    <div class="input-group input-sm">
+                        <img src="/captcha/getImage" id="captchaImage">
                     </div>
                     <div class="input-group input-sm">
                         <div class="checkbox">
@@ -49,6 +61,12 @@
         </div>
     </div>
 </div>
-
 </body>
+<script type="text/javascript">
+    $(function(){
+        $("#captchaImage").click(function(){
+            $("#captchaImage").attr("src","/captcha/getImage?"+Math.random())
+        });
+    })
+</script>
 </html>

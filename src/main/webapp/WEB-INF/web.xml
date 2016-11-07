@@ -21,6 +21,7 @@
         <url-pattern>/*</url-pattern>
     </filter-mapping>
 
+    <!--配置spring security对当前session控制-->
     <listener>
         <listener-class>
             org.springframework.security.web.session.HttpSessionEventPublisher

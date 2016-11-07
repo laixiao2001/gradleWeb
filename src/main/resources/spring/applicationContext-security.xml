@@ -13,29 +13,50 @@
     <context:component-scan base-package="com.security" use-default-filters="false" >
         <context:include-filter type="annotation" expression="org.springframework.stereotype.Service"/>
     </context:component-scan>
+
     <!-- Spring Security采用就近原则,有多个约束时,从上至下只要找到第一条满足就返回,因此因该将最严格的约束放在最前面,而将最宽松的约束放在最后面.auto-config属性可以让spring security为我们自动配置几种常用的权限控制机制，包括form,anonymous, rememberMe等。当然你也可以手工配置。-->
-    <http auto-config="true" use-expressions="true">
+    <http auto-config="false" use-expressions="true" entry-point-ref="authenticationEntryPoint">
         <intercept-url pattern="/home" access="permitAll" />
         <intercept-url pattern="/admin**" access="hasRole('ADMIN')" />
         <intercept-url pattern="/dba**" access="hasRole('ADMIN') and hasRole('DBA')" />
-        <form-login  login-page="/login" username-parameter="username" password-parameter="password"
-                     authentication-success-forward-url="/admin" always-use-default-target="false"
-                     authentication-failure-url="/accessDenied" default-target-url="/home"
-        />
+        <!--<form-login  login-page="/login" username-parameter="username" password-parameter="password"-->
+                     <!--authentication-success-forward-url="/admin" always-use-default-target="false"-->
+                     <!--authentication-failure-url="/login?error=true" default-target-url="/home"-->
+                     <!--authentication-failure-forward-url="" login-processing-url=""/>-->
+        <custom-filter ref="myLoginFilter"  position="FORM_LOGIN_FILTER" />
         <csrf />
         <remember-me remember-me-parameter="remember-me" remember-me-cookie="remember-me"
                 token-validity-seconds="86400" data-source-ref="dataSource" user-service-ref="customUserDetailsService"/>
-        <!--<session-management invalid-session-url="/timeout">-->
-            <!--<concurrency-control max-sessions="1" error-if-maximum-exceeded="false"/>-->
-        <!--</session-management>-->
+        <session-management session-authentication-error-url="/invalid" >
+            <concurrency-control max-sessions="1" error-if-maximum-exceeded="true"/>
+        </session-management>
     </http>
+
+    <beans:bean id="myLoginFilter" class="com.security.common.MyUsernamePasswordAuthenticationFilter">
+        <beans:property name="authenticationManager" ref="authenticationManager"/>
+        <beans:property name="authenticationSuccessHandler" ref="successHandler"/>
+        <beans:property name="authenticationFailureHandler" ref="failureHandler"/>
+    </beans:bean>
+
+    <beans:bean id="successHandler" class="com.security.common.MySavedRequestAwareAuthenticationSuccessHandler">
+        <beans:property name="defaultTargetUrl" value="/"/>
+    </beans:bean>
+
+    <beans:bean id="failureHandler" class="com.security.common.MySimpleUrlAuthenticationFailureHandler">
+        <beans:property name="defaultFailureUrl" value="/" />
+    </beans:bean>
+
     <beans:bean name="bcryptEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
 
-    <authentication-manager >
+    <authentication-manager alias="authenticationManager">
         <authentication-provider user-service-ref="customUserDetailsService" >
             <password-encoder ref="bcryptEncoder"/>
         </authentication-provider>
     </authentication-manager>
 
     <beans:bean id="customUserDetailsService" class="com.security.service.CustomUserDetailsService" />
+
+    <beans:bean id="authenticationEntryPoint" class="org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint">
+        <beans:constructor-arg value="/login"/>
+    </beans:bean>
 </beans:beans>
