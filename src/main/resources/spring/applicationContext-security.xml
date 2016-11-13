@@ -16,9 +16,9 @@
 
     <!-- Spring Security采用就近原则,有多个约束时,从上至下只要找到第一条满足就返回,因此因该将最严格的约束放在最前面,而将最宽松的约束放在最后面.auto-config属性可以让spring security为我们自动配置几种常用的权限控制机制，包括form,anonymous, rememberMe等。当然你也可以手工配置。-->
     <http auto-config="false" use-expressions="true" entry-point-ref="authenticationEntryPoint">
+        <intercept-url pattern="/static" access="permitAll" />
         <intercept-url pattern="/home" access="permitAll" />
         <intercept-url pattern="/admin**" access="hasRole('ADMIN')" />
-        <intercept-url pattern="/dba**" access="hasRole('ADMIN') and hasRole('DBA')" />
         <!--<form-login  login-page="/login" username-parameter="username" password-parameter="password"-->
                      <!--authentication-success-forward-url="/admin" always-use-default-target="false"-->
                      <!--authentication-failure-url="/login?error=true" default-target-url="/home"-->

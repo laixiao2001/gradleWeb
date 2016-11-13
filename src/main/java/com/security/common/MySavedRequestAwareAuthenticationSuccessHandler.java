@@ -31,7 +31,6 @@ public class MySavedRequestAwareAuthenticationSuccessHandler extends SimpleUrlAu
         SavedRequest savedRequest = requestCache.getRequest(request, response);
         String LOCAL_SERVER_URL = "http://localhost:8088";
         if (savedRequest == null) {
-            System.out.println("savedRequest is null ");
             //用户判断是否要使用上次通过session里缓存的回调URL地址
             int flag = 0;
             //通过提交登录请求传递需要回调的URL callCustomRediretUrl

@@ -40,6 +40,8 @@ public class MyUsernamePasswordAuthenticationFilter extends UsernamePasswordAuth
         }
         String username = obtainUsername(request);
         String password = obtainPassword(request);
+        request.getSession().setAttribute("username", username);
+        request.getSession().setAttribute("password", password);
         String redirectUrl = obtainRedercitUrl(request);
         String captcha = obtainCaptcha(request);
         if (username == null) {
